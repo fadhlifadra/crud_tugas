@@ -21,7 +21,7 @@ const conn = mysql.createConnection({
 //connect ke database
 conn.connect((err) =>{
   if(err) throw err;
-  console.log('Mysql Connected...');
+  console.log('Mysql Connected');
 });
  
 //set views file
@@ -46,7 +46,7 @@ app.get('/',(req, res) => {
  
 //route untuk insert data
 app.post('/save',(req, res) => {
-  let data = {nama: req.body.nama, notelp: req.body.notelp, plat: req.body.plat, diagnosa: req.body.diagnosa, mwnginap: req.body.menginap, mecha: req.body.mecha, pembayaran: req.body.pembayaran};
+  let data = {nama: req.body.nama, notelp: req.body.notelp, plat: req.body.plat, diagnosa: req.body.diagnosa, menginap: req.body.menginap, mecha: req.body.mecha, pembayaran: req.body.pembayaran};
   let sql = "INSERT INTO mechanic SET ?";
   let query = conn.query(sql, data,(err, results) => {
     if(err) throw err;
@@ -65,7 +65,7 @@ app.post('/update',(req, res) => {
  
 //route untuk delete data
 app.post('/delete',(req, res) => {
-  let sql = "DELETE FROM product WHERE id="+req.body.id+"";
+  let sql = "DELETE FROM mechanic WHERE id="+req.body.id+"";
   let query = conn.query(sql, (err, results) => {
     if(err) throw err;
       res.redirect('/');
